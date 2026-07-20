@@ -1,0 +1,50 @@
+{
+  "coupa": {
+    "host_markers": ["sourcing.coupa.com", "supplier.coupahost.com"],
+    "content_markers": ["Coupa", "Sourcing Event", "Supplier Portal"]
+  },
+  "ariba": {
+    "host_markers": ["discovery.ariba.com", "service.ariba.com"],
+    "content_markers": ["Ariba", "SAP Business Network", "Discovery"]
+  },
+  "jaggaer": {
+    "host_markers": ["jaggaer.com"],
+    "content_markers": ["JAGGAER", "Supplier Portal"]
+  },
+  "ivalua": {
+    "host_markers": ["ivalua.app", "ivalua.com"],
+    "content_markers": ["Ivalua", "Supplier portal"]
+  },
+  "mercell": {
+    "host_markers": ["mercell.com", "s2c.mercell.com"],
+    "content_markers": ["Mercell", "public tenders"]
+  },
+  "delta_esourcing": {
+    "host_markers": ["delta-esourcing.com"],
+    "content_markers": ["Delta eSourcing", "View Notice"]
+  },
+  "in_tend": {
+    "host_markers": ["in-tendhost.co.uk", "in-tend.co.uk"],
+    "content_markers": ["In-Tend", "Current Tenders"]
+  },
+  "bonfire": {
+    "host_markers": ["bonfirehub.com", "bonfirehub.ca", "gobonfire.com"],
+    "content_markers": ["Bonfire", "Open Public Opportunities"]
+  },
+  "proactis": {
+    "host_markers": ["proactisplaza.com", "proactis.com"],
+    "content_markers": ["PROACTIS", "Supplier Network"]
+  },
+  "bidsandtenders": {
+    "host_markers": ["bidsandtenders.ca", "bids.toronto.ca"],
+    "content_markers": ["Bids and Tenders", "Bid Opportunities"]
+  },
+  "eu_supply": {
+    "host_markers": ["eu-supply.com"],
+    "content_markers": ["EU-Supply", "Public Tenders"]
+  },
+  "oracle_procurement": {
+    "host_markers": ["oraclecloud.com", "oracle.com"],
+    "content_markers": ["Oracle Procurement", "Supplier Portal"]
+  }
+}

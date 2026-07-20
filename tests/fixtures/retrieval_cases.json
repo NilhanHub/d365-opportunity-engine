@@ -1,0 +1,162 @@
+[
+  {
+    "id": "pos-formal-d365-cs",
+    "label": "positive",
+    "lane": "formal_procurement",
+    "source_name": "ted",
+    "workload": "Customer Service",
+    "evidence": {
+      "title": "Dynamics 365 Customer Service implementation tender",
+      "summary": "Request for proposal for Dynamics 365 Customer Service, Omnichannel, integration, training, and hypercare.",
+      "buyer_name": "Metro Borough Council",
+      "buyer_country": "GB",
+      "procurement_type": "Tender",
+      "source_url": "https://buyer.example/opportunity/1",
+      "response_url": "https://buyer.example/opportunity/1/respond",
+      "procurement_id": "CS-1001",
+      "raw_excerpt": "Public procurement for Microsoft Dynamics 365 Customer Service and Power Platform support services."
+    }
+  },
+  {
+    "id": "pos-pre-bc-renewal",
+    "label": "positive",
+    "lane": "pre_positioning",
+    "source_name": "contracts_finder",
+    "workload": "Business Central",
+    "evidence": {
+      "title": "Business Central support framework and renewal planning",
+      "summary": "Award notice and framework agreement for Microsoft Dynamics 365 Business Central managed support.",
+      "buyer_name": "Regional Water Authority",
+      "buyer_country": "GB",
+      "procurement_type": "Framework agreement",
+      "source_url": "https://buyer.example/opportunity/2",
+      "raw_excerpt": "Incumbent support contract for Business Central renewal and framework vehicle."
+    }
+  },
+  {
+    "id": "pos-outreach-dataverse-job",
+    "label": "positive",
+    "lane": "direct_outreach",
+    "source_name": "generic_web",
+    "workload": "Dataverse / Power Platform",
+    "evidence": {
+      "title": "Power Platform and Dataverse Solution Architect",
+      "summary": "Career page for a digital transformation programme using Dataverse, Power Apps, and Microsoft Dynamics 365.",
+      "buyer_name": "National Services Agency",
+      "buyer_country": "GB",
+      "source_url": "https://buyer.example/careers/3",
+      "raw_excerpt": "Job posting for Dataverse, Power Platform, and Dynamics 365 implementation partner coordination."
+    }
+  },
+  {
+    "id": "pos-trigger-nav",
+    "label": "positive",
+    "lane": "install_base_trigger",
+    "source_name": "generic_web",
+    "workload": "Business Central",
+    "evidence": {
+      "title": "Dynamics NAV on-premises modernization roadmap",
+      "summary": "Board paper for migrating Navision to Business Central with managed support.",
+      "buyer_name": "County Health Service",
+      "buyer_country": "GB",
+      "source_url": "https://buyer.example/board/4",
+      "raw_excerpt": "Legacy Dynamics NAV / Navision on-premises estate requires modernization, migration, and support."
+    }
+  },
+  {
+    "id": "neg-sap",
+    "label": "negative",
+    "source_name": "ted",
+    "workload": "Finance",
+    "evidence": {
+      "title": "SAP S/4HANA implementation services",
+      "summary": "Procurement for SAP S/4HANA migration and support.",
+      "buyer_name": "Transport Agency",
+      "buyer_country": "GB",
+      "procurement_type": "Tender",
+      "source_url": "https://buyer.example/negative/1",
+      "response_url": "https://buyer.example/negative/1/respond",
+      "raw_excerpt": "SAP S/4HANA program with no Microsoft scope."
+    }
+  },
+  {
+    "id": "neg-generic-erp",
+    "label": "negative",
+    "source_name": "contracts_finder",
+    "workload": "General",
+    "evidence": {
+      "title": "Enterprise ERP replacement programme",
+      "summary": "Buyer seeks ERP implementation partner.",
+      "buyer_name": "General Hospital",
+      "buyer_country": "GB",
+      "procurement_type": "Tender",
+      "source_url": "https://buyer.example/negative/2",
+      "response_url": "https://buyer.example/negative/2/respond",
+      "raw_excerpt": "ERP implementation and maintenance."
+    }
+  },
+  {
+    "id": "neg-generic-crm",
+    "label": "negative",
+    "source_name": "find_a_tender",
+    "workload": "Sales",
+    "evidence": {
+      "title": "CRM support and hosting services",
+      "summary": "Generic CRM consultancy and support requirement.",
+      "buyer_name": "Tourism Board",
+      "buyer_country": "GB",
+      "procurement_type": "RFP",
+      "source_url": "https://buyer.example/negative/3",
+      "response_url": "https://buyer.example/negative/3/respond",
+      "raw_excerpt": "CRM and contact center tools."
+    }
+  },
+  {
+    "id": "neg-crew-resource-management",
+    "label": "negative",
+    "source_name": "ted",
+    "workload": "General",
+    "evidence": {
+      "title": "Crew Resource Management training services",
+      "summary": "CRM aviation safety training for pilots and crews.",
+      "buyer_name": "Airport Authority",
+      "buyer_country": "GB",
+      "procurement_type": "Tender",
+      "source_url": "https://buyer.example/negative/4",
+      "response_url": "https://buyer.example/negative/4/respond",
+      "raw_excerpt": "Crew Resource Management refresher training."
+    }
+  },
+  {
+    "id": "neg-copilote",
+    "label": "negative",
+    "source_name": "generic_rss",
+    "workload": "General",
+    "evidence": {
+      "title": "COPILOTE fleet management platform support",
+      "summary": "Maintenance services for the COPILOTE platform.",
+      "buyer_name": "Logistics Group",
+      "buyer_country": "FR",
+      "procurement_type": "Notice",
+      "source_url": "https://buyer.example/negative/5",
+      "response_url": "https://buyer.example/negative/5/respond",
+      "raw_excerpt": "COPILOTE platform maintenance."
+    }
+  },
+  {
+    "id": "neg-ted-copilote",
+    "label": "negative",
+    "source_name": "ted",
+    "workload": "General",
+    "evidence": {
+      "title": "TED notice for COPILOTE marine operations support",
+      "summary": "Support and maintenance services for the COPILOTE command platform.",
+      "buyer_name": "Port Authority",
+      "buyer_country": "FR",
+      "procurement_type": "TED notice",
+      "source_url": "https://ted.example/negative/6",
+      "response_url": "https://ted.example/negative/6/respond",
+      "raw_excerpt": "COPILOTE platform support with no Microsoft Dynamics scope."
+    }
+  }
+]

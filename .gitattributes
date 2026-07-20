@@ -1,0 +1,9 @@
+apps/web/node_modules export-ignore
+apps/web/.next export-ignore
+artifacts/bundle_root export-ignore
+artifacts/package_stage export-ignore
+artifacts/D365-Opportunity-Engine-Session-Bundle export-ignore
+.pytest_cache export-ignore
+__pycache__ export-ignore
+.mypy_cache export-ignore
+.ruff_cache export-ignore

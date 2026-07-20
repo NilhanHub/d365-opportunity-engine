@@ -1,0 +1,7 @@
+* @internal/d365-opps
+
+/src/d365opps/ @internal/d365-opps
+/apps/web/ @internal/d365-opps
+/docs/ @internal/d365-opps
+/harness/ @internal/d365-opps
+/tests/ @internal/d365-opps

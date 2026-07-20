@@ -1,0 +1,1715 @@
+{
+  "$schema": "./agent-native-repo-harness-map.schema.json",
+  "manifestKind": "agent-native-repo-harness-map",
+  "manifestVersion": "4.0.0",
+  "template": false,
+  "standard": {
+    "title": "Agent-Native Repo Harness Standard",
+    "date": "2026-04-14",
+    "sourcePath": "harness/agent-native-repo-harness-standard-2026-04-14.md",
+    "legacyLineage": {
+      "replaces": [
+        "san-topology-graph-template-v3.7.json",
+        "SAN Repo OS / RaaOS topology graph template"
+      ],
+      "note": "Supersedes topology-only SAN mapping with a layered harness map. Code topology remains first-class in codeGraph, but authority, runtime, governance, specialization, and maturity are now modeled explicitly."
+    }
+  },
+  "repo": {
+    "repoId": "d365-opps",
+    "displayName": "d365-opps",
+    "repoCondition": "inherited",
+    "repoType": "mixed",
+    "defaultBranch": "main",
+    "languages": [
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "web",
+      "api",
+      "data"
+    ],
+    "notes": "Internal intelligence and operations system for public-web Microsoft Dynamics 365 opportunity discovery, verification, and Oracle packaging."
+  },
+  "generation": {
+    "mode": "hybrid",
+    "frozenToDate": "2026-04-15",
+    "lastGeneratedAt": "2026-04-15T08:08:50Z",
+    "generatedBy": [
+      "codex",
+      "repo-local verification services"
+    ],
+    "manualOwners": [
+      "repository maintainers"
+    ],
+    "notes": "Authority, governance, and export boundaries are curated repo-local surfaces; the harness map is regenerated when canonical truth surfaces change."
+  },
+  "authority": {
+    "precedenceModel": {
+      "description": "More specific local surfaces refine broader ones. No silent conflicts are allowed.",
+      "layers": [
+        {
+          "id": "instructions.user.global",
+          "templateOnly": false,
+          "kind": "instructions",
+          "scope": "user-global",
+          "location": "C:/Users/Nilhan.dev/.codex/AGENTS.md",
+          "appliesTo": "**",
+          "precedence": 10,
+          "mergeBehavior": "append-and-refine",
+          "authoritative": false,
+          "notes": "User-level Codex defaults outside the repo."
+        },
+        {
+          "id": "instructions.repo.root",
+          "templateOnly": false,
+          "kind": "instructions",
+          "scope": "repo-root",
+          "location": "AGENTS.md",
+          "appliesTo": "**",
+          "precedence": 20,
+          "mergeBehavior": "append-and-refine",
+          "authoritative": true,
+          "notes": "Primary repo-local instruction surface for coding work in this workspace."
+        },
+        {
+          "id": "instructions.repo.oracle",
+          "templateOnly": false,
+          "kind": "operational-brief",
+          "scope": "repo-root",
+          "location": "docs/for-oracle-to-read.md",
+          "appliesTo": "artifacts/**,harness/**,src/d365opps/**",
+          "precedence": 30,
+          "mergeBehavior": "override-where-specific",
+          "authoritative": true,
+          "notes": "Canonical Oracle bundling, admissibility, and offline review instructions."
+        }
+      ],
+      "defaultColdStartSequence": [
+        "Read AGENTS.md.",
+        "Read docs/for-oracle-to-read.md and docs/verification.md.",
+        "Inspect artifacts/runs/latest-live-public/ and artifacts/verification/latest-live-public/ when they exist.",
+        "Validate canonical truth via run_verdict, current_pipeline_truth_report, and canonical_bundle_admissibility_report.",
+        "Use codeGraph to narrow the mutation surface before changing code."
+      ],
+      "conflictPolicy": "Repo-root AGENTS.md controls general coding behavior. docs/for-oracle-to-read.md controls Oracle/admissibility packaging. Narrower repo-local surfaces may refine but must not silently contradict broader ones.",
+      "notes": "The repo uses explicit authority surfaces for coding behavior, verification, export boundaries, and Oracle packaging."
+    }
+  },
+  "repoKernel": {
+    "systemOfRecordSurfaces": [
+      {
+        "id": "sor.architecture",
+        "templateOnly": false,
+        "kind": "architecture",
+        "location": "docs/architecture.md",
+        "required": true,
+        "freshnessSlaDays": 30,
+        "writePolicy": "agent-writable-with-review",
+        "notes": "Architecture, component boundaries, and data flow."
+      },
+      {
+        "id": "sor.handoff",
+        "templateOnly": false,
+        "kind": "handoff-log",
+        "location": "docs/agent-handoff.md",
+        "required": true,
+        "freshnessSlaDays": 7,
+        "writePolicy": "append-only",
+        "notes": "Durable handoff surface between sessions."
+      },
+      {
+        "id": "sor.verification",
+        "templateOnly": false,
+        "kind": "verification-guide",
+        "location": "docs/verification.md",
+        "required": true,
+        "freshnessSlaDays": 30,
+        "writePolicy": "agent-writable-with-review",
+        "notes": "Canonical verification entrypoints and operator expectations."
+      },
+      {
+        "id": "sor.metric-catalog",
+        "templateOnly": false,
+        "kind": "metric-catalog",
+        "location": "docs/metric-catalog.md",
+        "required": true,
+        "freshnessSlaDays": 14,
+        "writePolicy": "agent-writable-with-review",
+        "notes": "Canonical metric ontology for acquisition, retained intelligence, commercial actionability, and seller readiness."
+      },
+      {
+        "id": "sor.oracle",
+        "templateOnly": false,
+        "kind": "oracle-brief",
+        "location": "docs/for-oracle-to-read.md",
+        "required": true,
+        "freshnessSlaDays": 3,
+        "writePolicy": "agent-writable-with-review",
+        "notes": "Canonical Oracle bundle recipe, admissibility gates, and latest artifact pointers."
+      },
+      {
+        "id": "sor.export-policy",
+        "templateOnly": false,
+        "kind": "export-policy",
+        "location": "docs/export-policy.md",
+        "required": true,
+        "freshnessSlaDays": 30,
+        "writePolicy": "human-reviewed",
+        "notes": "Defines export boundaries and bundle sanitization."
+      },
+      {
+        "id": "sor.live-accountability",
+        "templateOnly": false,
+        "kind": "accountability-surface",
+        "location": "artifacts/runs/latest-live-public/",
+        "required": true,
+        "freshnessSlaDays": 1,
+        "writePolicy": "generated",
+        "notes": "Canonical live-public accountability surface when an admissible run exists."
+      }
+    ],
+    "taskSources": [
+      {
+        "id": "tasks.oracle-brief",
+        "templateOnly": false,
+        "kind": "repo-brief",
+        "location": "docs/for-oracle-to-read.md",
+        "bounded": true,
+        "notes": "Current bounded objective, latest artifact pointers, and Oracle acceptance evidence."
+      },
+      {
+        "id": "tasks.run-verdict",
+        "templateOnly": false,
+        "kind": "generated-verdict",
+        "location": "artifacts/runs/latest-live-public/run_verdict.md",
+        "bounded": true,
+        "notes": "Canonical operator verdict generated from artifacts only."
+      }
+    ],
+    "handoffArtifacts": [
+      {
+        "id": "handoff.agent",
+        "templateOnly": false,
+        "kind": "progress-log",
+        "location": "docs/agent-handoff.md",
+        "requiredBeforeExit": true,
+        "notes": "Durable handoff summary for subsequent sessions."
+      },
+      {
+        "id": "handoff.live-verdict",
+        "templateOnly": false,
+        "kind": "run-verdict",
+        "location": "artifacts/runs/latest-live-public/run_verdict.md",
+        "requiredBeforeExit": true,
+        "notes": "Artifact-backed final verdict for the latest admissible live-public run."
+      }
+    ],
+    "exportBoundaries": [
+      {
+        "id": "export.gitattributes",
+        "templateOnly": false,
+        "kind": "archive-boundary",
+        "location": ".gitattributes",
+        "audience": "external",
+        "notes": "Marks heavyweight or internal-only surfaces with export-ignore."
+      },
+      {
+        "id": "export.oracle-policy",
+        "templateOnly": false,
+        "kind": "oracle-bundle-boundary",
+        "location": "docs/export-policy.md",
+        "audience": "oracle-review",
+        "notes": "Defines what may and may not enter the canonical Oracle bundle."
+      }
+    ]
+  },
+  "runtimeFabric": {
+    "sessionContinuity": {
+      "mode": "hybrid",
+      "durableStores": [
+        {
+          "id": "session.repo.handoff",
+          "templateOnly": false,
+          "kind": "repo-visible-handoff",
+          "location": "docs/agent-handoff.md",
+          "appendOnly": true
+        },
+        {
+          "id": "session.verification.artifacts",
+          "templateOnly": false,
+          "kind": "artifact-history",
+          "location": "artifacts/verification/",
+          "appendOnly": true
+        },
+        {
+          "id": "session.accountability.artifacts",
+          "templateOnly": false,
+          "kind": "artifact-history",
+          "location": "artifacts/runs/",
+          "appendOnly": true
+        }
+      ],
+      "checkpointStrategy": "Persist semantic continuity in docs/agent-handoff.md and operational truth in verification/accountability artifacts.",
+      "compactionStrategy": "Bundle-friendly reports and latest pointers reduce active context but do not replace durable artifacts.",
+      "resumeEntrypoints": [
+        "Read docs/for-oracle-to-read.md.",
+        "Open artifacts/runs/latest-live-public/run_verdict.md when present.",
+        "Re-run verification commands before mutation when runtime truth is stale."
+      ],
+      "notes": "The harness keeps durable artifact history under artifacts/ and durable instructions under docs/."
+    },
+    "executionEnvironments": [
+      {
+        "id": "env.local.python",
+        "templateOnly": false,
+        "kind": "local-workspace",
+        "setupEntrypoints": [
+          "d365-opps init-db",
+          "d365-opps seed-sources"
+        ],
+        "cleanupEntrypoints": [
+          "Remove-Item -Recurse -Force var\\*.db-journal -ErrorAction SilentlyContinue"
+        ],
+        "networkPolicyId": "policy.network.public-fetch",
+        "secretPolicyId": "policy.secrets.redacted",
+        "writeScope": [
+          "."
+        ],
+        "notes": "Primary local Python workspace for crawling, verification, and Oracle packaging."
+      },
+      {
+        "id": "env.compose.live",
+        "templateOnly": false,
+        "kind": "compose-stack",
+        "setupEntrypoints": [
+          "docker compose -f compose.yaml -f compose.live.yaml up --build"
+        ],
+        "cleanupEntrypoints": [
+          "docker compose -f compose.yaml -f compose.live.yaml down"
+        ],
+        "networkPolicyId": "policy.network.public-fetch",
+        "secretPolicyId": "policy.secrets.redacted",
+        "writeScope": [
+          "apps/web",
+          "src",
+          "artifacts",
+          "var"
+        ],
+        "notes": "Live app stack for API/web screenshot capture."
+      }
+    ],
+    "workContexts": [
+      {
+        "id": "context.repo.root",
+        "templateOnly": false,
+        "kind": "local-checkout",
+        "location": ".",
+        "persistent": true,
+        "isolatedFrom": [
+          "context.compose.live"
+        ],
+        "notes": "Primary development and verification context."
+      },
+      {
+        "id": "context.compose.live",
+        "templateOnly": false,
+        "kind": "local-runtime",
+        "location": "compose.yaml + compose.live.yaml",
+        "persistent": false,
+        "isolatedFrom": [
+          "context.repo.root"
+        ],
+        "notes": "Live UI/API runtime used for screenshot capture and smoke validation."
+      }
+    ],
+    "toolBuses": [
+      {
+        "id": "toolbus.codex",
+        "templateOnly": false,
+        "kind": "agent-tool-bus",
+        "configLocation": "tool-managed",
+        "scope": "repo + local runtime",
+        "trustClass": "human-supervised",
+        "supports": [
+          "shell",
+          "apply_patch",
+          "web",
+          "mcp"
+        ],
+        "approvalBehavior": "interactive-or-policy-driven",
+        "notes": "Primary Codex harness tool bus."
+      },
+      {
+        "id": "toolbus.fastapi",
+        "templateOnly": false,
+        "kind": "http-api",
+        "configLocation": "src/d365opps/api.py",
+        "scope": "local API consumers",
+        "trustClass": "repo-local",
+        "supports": [
+          "json",
+          "metrics"
+        ],
+        "approvalBehavior": "repo-configured",
+        "notes": "Local read/write API layer for the web app and operator actions."
+      }
+    ]
+  },
+  "specialization": {
+    "skills": [
+      {
+        "id": "skill.oracle",
+        "templateOnly": false,
+        "name": "oracle",
+        "location": "C:/Users/Nilhan.dev/.codex/skills/oracle/SKILL.md",
+        "scope": "bundling, review handoff, Oracle packaging",
+        "invocation": "explicit",
+        "relatedNodeIds": [
+          "node.oracle_bundle",
+          "node.verification"
+        ],
+        "verificationRefs": [
+          "verify.oracle.bundle"
+        ],
+        "notes": "Used when the operator explicitly requests Oracle packaging or offline review bundles."
+      }
+    ],
+    "agents": [
+      {
+        "id": "agent.codex.default",
+        "templateOnly": false,
+        "name": "Codex Default",
+        "kind": "generalist-coding-agent",
+        "definitionLocation": "AGENTS.md",
+        "toolScopes": [
+          "toolbus.codex"
+        ],
+        "permissionPolicyIds": [
+          "policy.export.boundary",
+          "policy.oracle.admissibility"
+        ],
+        "relatedNodeIds": [
+          "node.pipeline",
+          "node.verification",
+          "node.web_app"
+        ],
+        "handoffTargets": [
+          "docs/agent-handoff.md",
+          "artifacts/runs/latest-live-public/run_verdict.md"
+        ],
+        "notes": "Primary coding agent operating inside the repo harness."
+      }
+    ]
+  },
+  "governancePlane": {
+    "verificationSurfaces": [
+      {
+        "id": "verify.pytest",
+        "templateOnly": false,
+        "kind": "test-suite",
+        "command": "pytest -q",
+        "workingDirectory": ".",
+        "appliesToNodeIds": [
+          "node.pipeline",
+          "node.verification",
+          "node.oracle_bundle"
+        ],
+        "deterministic": true,
+        "requiredForMerge": true,
+        "notes": "Core regression suite."
+      },
+      {
+        "id": "verify.bundle",
+        "templateOnly": false,
+        "kind": "bundle-generation",
+        "command": "d365-opps verify-pack --run-id <run-id>",
+        "workingDirectory": ".",
+        "appliesToNodeIds": [
+          "node.verification"
+        ],
+        "deterministic": false,
+        "requiredForMerge": true,
+        "notes": "Generates verification evidence for a run."
+      },
+      {
+        "id": "verify.oracle.bundle",
+        "templateOnly": false,
+        "kind": "bundle-generation",
+        "command": "d365-opps build-oracle-bundle",
+        "workingDirectory": ".",
+        "appliesToNodeIds": [
+          "node.oracle_bundle"
+        ],
+        "deterministic": false,
+        "requiredForMerge": true,
+        "notes": "Builds the canonical Oracle package only from admissible live-public artifacts."
+      }
+    ],
+    "observabilitySurfaces": [
+      {
+        "id": "obs.metrics",
+        "templateOnly": false,
+        "kind": "metrics-endpoint",
+        "accessMethod": "/metrics",
+        "dataSensitivity": "internal",
+        "appliesToNodeIds": [
+          "node.api",
+          "node.verification"
+        ],
+        "notes": "Prometheus-style metrics exposed by the API."
+      },
+      {
+        "id": "obs.accountability",
+        "templateOnly": false,
+        "kind": "artifact-surface",
+        "accessMethod": "artifacts/runs/latest-live-public/",
+        "dataSensitivity": "internal",
+        "appliesToNodeIds": [
+          "node.verification",
+          "node.oracle_bundle"
+        ],
+        "notes": "Canonical offline accountability evidence."
+      }
+    ],
+    "reviewLoops": [
+      {
+        "id": "review.truth",
+        "templateOnly": false,
+        "kind": "artifact-review",
+        "trigger": "post-run",
+        "canBlock": true,
+        "verifierIds": [
+          "verify.bundle",
+          "verify.oracle.bundle"
+        ],
+        "notes": "Canonical latest promotion is blocked when admissibility or truth-consistency fails."
+      }
+    ],
+    "hooks": [
+      {
+        "id": "hook.job.finish",
+        "templateOnly": false,
+        "event": "job.finish",
+        "handlerType": "python",
+        "sourceLocation": "src/d365opps/pipeline.py::_finish_job",
+        "blockOnFailure": true,
+        "appliesTo": [
+          "job_run",
+          "verification_bundle",
+          "accountability_run"
+        ],
+        "purpose": "Generate verification/accountability artifacts and refresh Oracle instructions after jobs finish.",
+        "notes": "This hook is part of the repo-local truth publication path."
+      }
+    ],
+    "automations": [],
+    "policies": [
+      {
+        "id": "policy.network.public-fetch",
+        "templateOnly": false,
+        "kind": "network-policy",
+        "enforcement": "config-and-runtime",
+        "sourceLocation": "src/d365opps/config.py",
+        "appliesTo": [
+          "public procurement fetches",
+          "pipeline refresh jobs",
+          "doctor and canary runs"
+        ],
+        "notes": "Restricts runtime to lawful public-web acquisition surfaces."
+      },
+      {
+        "id": "policy.secrets.redacted",
+        "templateOnly": false,
+        "kind": "secret-redaction",
+        "enforcement": "code-and-bundle",
+        "sourceLocation": "src/d365opps/forensics.py",
+        "appliesTo": [
+          "logs",
+          "verification bundles",
+          "Oracle bundles"
+        ],
+        "notes": "Prevents credentials and sensitive headers from leaking into artifacts."
+      },
+      {
+        "id": "policy.export.boundary",
+        "templateOnly": false,
+        "kind": "export-boundary",
+        "enforcement": "repo-and-bundle",
+        "sourceLocation": "docs/export-policy.md",
+        "appliesTo": [
+          "artifacts",
+          "Oracle packaging",
+          "bundle staging"
+        ],
+        "notes": "Defines canonical excludes such as node_modules, .next, caches, DB dumps, and recursive artifact junk."
+      },
+      {
+        "id": "policy.oracle.admissibility",
+        "templateOnly": false,
+        "kind": "admissibility-gate",
+        "enforcement": "verification-and-bundle-build",
+        "sourceLocation": "src/d365opps/verification.py",
+        "appliesTo": [
+          "canonical latest pointers",
+          "latest-live-public promotion",
+          "Oracle packaging"
+        ],
+        "notes": "Canonical latest fails closed when the candidate is fixture/demo/mixed, uses placeholder screenshots, or fails official regression truth."
+      }
+    ]
+  },
+  "codeGraph": {
+    "generation": {
+      "mode": "hybrid",
+      "preferredGenerators": [
+        "repo-curated",
+        "rg",
+        "sqlalchemy model inspection"
+      ],
+      "lastGeneratedAt": "2026-04-15T08:08:50Z",
+      "coverageEstimatePercent": 91,
+      "notes": "The repo graph is curated for high-signal operational surfaces and major code modules."
+    },
+    "operationalLoadModel": {
+      "enabled": true,
+      "advisoryOnly": true,
+      "factors": [
+        "codeSurfaceShare",
+        "dependencyCentrality",
+        "fanInFanOutPressure",
+        "affectedRadius",
+        "changeFrequency",
+        "runtimeCriticality",
+        "verificationSpan",
+        "hiddenStateRisk"
+      ],
+      "policy": {
+        "targetMaxLoadPercent": 25,
+        "reviewTriggerPercent": 20,
+        "mandatoryDispersionReviewPercent": 30,
+        "allowExceptionalNodes": true
+      },
+      "notes": "Operational load is advisory and used to keep mutations bounded around pipeline, verification, packaging, and UI truth surfaces."
+    },
+    "nodes": [
+      {
+        "id": "node.pipeline",
+        "templateOnly": false,
+        "kind": "python-module",
+        "label": "Pipeline Service",
+        "description": "Source refresh, classification, dedupe, enrichment, and job orchestration.",
+        "parentId": null,
+        "childIds": [
+          "node.sources",
+          "node.verification",
+          "node.api"
+        ],
+        "paths": [
+          "src/d365opps/pipeline.py"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "core",
+          "crawler"
+        ],
+        "layer": "repo-kernel",
+        "domain": "opportunity-engine",
+        "publicSurface": {
+          "contracts": [
+            "Pipeline Service"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.sources",
+            "node.verification",
+            "node.exporters"
+          ],
+          "observed": [
+            "node.api"
+          ],
+          "runtime": [
+            "node.api",
+            "node.exporters",
+            "node.sources",
+            "node.verification"
+          ],
+          "dataStores": [
+            "database",
+            "blob-store",
+            "artifacts"
+          ],
+          "externalSystems": [
+            "official public procurement portals"
+          ]
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps refresh",
+            "d365-opps bootstrap-backfill"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "d365-opps source-health",
+            "d365-opps recall-report"
+          ],
+          "observability": [
+            "obs.metrics.prometheus",
+            "obs.artifacts.accountability"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "single orchestrator module; diffable CLI surface"
+        },
+        "risk": {
+          "runtimeCriticality": "high",
+          "dataSensitivity": "internal",
+          "blastRadius": "high",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "surgical",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "bugfix",
+            "workflow-hardening",
+            "adapter-integration"
+          ]
+        },
+        "verificationRefs": [
+          "verify.pytest",
+          "verify.bundle"
+        ],
+        "policyRefs": [
+          "policy.network.public-fetch",
+          "policy.oracle.admissibility"
+        ],
+        "skillRefs": [
+          "skill.oracle"
+        ],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 16.0,
+          "factorScores": {
+            "codeSurfaceShare": 4,
+            "dependencyCentrality": 5,
+            "fanInFanOutPressure": 4,
+            "affectedRadius": 5,
+            "changeFrequency": 4,
+            "runtimeCriticality": 5,
+            "verificationSpan": 4,
+            "hiddenStateRisk": 3
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": true,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Primary runtime orchestrator."
+      },
+      {
+        "id": "node.sources",
+        "templateOnly": false,
+        "kind": "python-package",
+        "label": "Source Adapters",
+        "description": "Official public source adapters and HTML fallbacks.",
+        "parentId": "node.pipeline",
+        "childIds": [],
+        "paths": [
+          "src/d365opps/sources/"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "sources",
+          "adapters"
+        ],
+        "layer": "repo-kernel",
+        "domain": "acquisition",
+        "publicSurface": {
+          "contracts": [
+            "Source Adapters"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.data-config"
+          ],
+          "observed": [
+            "node.pipeline"
+          ],
+          "runtime": [
+            "node.data-config",
+            "node.pipeline"
+          ],
+          "dataStores": [
+            "blob-store"
+          ],
+          "externalSystems": [
+            "TED",
+            "Find a Tender",
+            "Contracts Finder",
+            "Ireland eTenders",
+            "HILMA",
+            "TenderNed",
+            "GETS"
+          ]
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps doctor --source <name>"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "d365-opps query-preview",
+            "d365-opps source-health"
+          ],
+          "observability": [
+            "obs.artifacts.verification"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "source-per-adapter; source pack metadata"
+        },
+        "risk": {
+          "runtimeCriticality": "high",
+          "dataSensitivity": "internal",
+          "blastRadius": "high",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "modular",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "adapter-upgrade",
+            "query-tuning",
+            "parser-hardening"
+          ]
+        },
+        "verificationRefs": [
+          "verify.pytest"
+        ],
+        "policyRefs": [
+          "policy.network.public-fetch"
+        ],
+        "skillRefs": [],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 16.0,
+          "factorScores": {
+            "codeSurfaceShare": 4,
+            "dependencyCentrality": 5,
+            "fanInFanOutPressure": 4,
+            "affectedRadius": 5,
+            "changeFrequency": 4,
+            "runtimeCriticality": 5,
+            "verificationSpan": 4,
+            "hiddenStateRisk": 3
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": true,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Includes TED, Find a Tender, Contracts Finder, Ireland eTenders, HILMA, TenderNed, GETS, and related official-public adapters."
+      },
+      {
+        "id": "node.verification",
+        "templateOnly": false,
+        "kind": "python-module",
+        "label": "Verification Service",
+        "description": "Generates verification bundles, accountability runs, admissibility reports, and truth audits.",
+        "parentId": null,
+        "childIds": [
+          "node.oracle_bundle"
+        ],
+        "paths": [
+          "src/d365opps/verification.py"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "verification",
+          "forensics"
+        ],
+        "layer": "governance-plane",
+        "domain": "truth-publication",
+        "publicSurface": {
+          "contracts": [
+            "Verification Service"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.pipeline",
+            "node.docs"
+          ],
+          "observed": [
+            "node.web_app",
+            "node.api"
+          ],
+          "runtime": [
+            "node.api",
+            "node.docs",
+            "node.pipeline",
+            "node.web_app"
+          ],
+          "dataStores": [
+            "artifacts",
+            "database"
+          ],
+          "externalSystems": [
+            "local browser for screenshots"
+          ]
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps verify-pack",
+            "d365-opps render-run-verdict"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "d365-opps doctor",
+            "d365-opps explain-zero"
+          ],
+          "observability": [
+            "obs.artifacts.accountability",
+            "obs.artifacts.verification",
+            "obs.logs.structured"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "artifact-centric outputs; schema-backed reports"
+        },
+        "risk": {
+          "runtimeCriticality": "high",
+          "dataSensitivity": "internal",
+          "blastRadius": "high",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "surgical",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "forensic-fix",
+            "admissibility-fix",
+            "artifact-layout-change"
+          ]
+        },
+        "verificationRefs": [
+          "verify.bundle",
+          "verify.pytest"
+        ],
+        "policyRefs": [
+          "policy.oracle.admissibility",
+          "policy.export.boundary"
+        ],
+        "skillRefs": [
+          "skill.oracle"
+        ],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 20.0,
+          "factorScores": {
+            "codeSurfaceShare": 5,
+            "dependencyCentrality": 5,
+            "fanInFanOutPressure": 5,
+            "affectedRadius": 5,
+            "changeFrequency": 5,
+            "runtimeCriticality": 5,
+            "verificationSpan": 5,
+            "hiddenStateRisk": 4
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": true,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Canonical truth publication layer for offline review."
+      },
+      {
+        "id": "node.oracle_bundle",
+        "templateOnly": false,
+        "kind": "python-module",
+        "label": "Oracle Bundle Builder",
+        "description": "Builds the canonical Oracle zip from admissible live-public artifacts only.",
+        "parentId": "node.verification",
+        "childIds": [],
+        "paths": [
+          "src/d365opps/oracle_bundle.py",
+          "src/d365opps/oracle_instructions.py"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "oracle",
+          "packaging"
+        ],
+        "layer": "governance-plane",
+        "domain": "handoff",
+        "publicSurface": {
+          "contracts": [
+            "Oracle Bundle Builder"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.verification",
+            "node.docs"
+          ],
+          "observed": [
+            "node.pipeline"
+          ],
+          "runtime": [
+            "node.docs",
+            "node.pipeline",
+            "node.verification"
+          ],
+          "dataStores": [
+            "artifacts"
+          ],
+          "externalSystems": []
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps build-oracle-bundle",
+            "d365-opps verify-oracle-bundle"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "d365-opps refresh-oracle-instructions"
+          ],
+          "observability": [
+            "obs.artifacts.accountability",
+            "obs.artifacts.verification"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "single zip output; explicit required file manifest"
+        },
+        "risk": {
+          "runtimeCriticality": "high",
+          "dataSensitivity": "internal",
+          "blastRadius": "high",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "surgical",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "bundle-policy-fix",
+            "lineage-fix"
+          ]
+        },
+        "verificationRefs": [
+          "verify.oracle.bundle",
+          "verify.pytest"
+        ],
+        "policyRefs": [
+          "policy.export.boundary",
+          "policy.oracle.admissibility"
+        ],
+        "skillRefs": [
+          "skill.oracle"
+        ],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 16.0,
+          "factorScores": {
+            "codeSurfaceShare": 4,
+            "dependencyCentrality": 5,
+            "fanInFanOutPressure": 4,
+            "affectedRadius": 5,
+            "changeFrequency": 4,
+            "runtimeCriticality": 5,
+            "verificationSpan": 4,
+            "hiddenStateRisk": 3
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": false,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Refuses to build canonical package when the latest live-public candidate is inadmissible."
+      },
+      {
+        "id": "node.api",
+        "templateOnly": false,
+        "kind": "python-module",
+        "label": "FastAPI API",
+        "description": "Read/write API, metrics, and operator actions for the web application.",
+        "parentId": null,
+        "childIds": [],
+        "paths": [
+          "src/d365opps/api.py",
+          "src/d365opps/ops.py",
+          "src/d365opps/diagnostics.py"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "api",
+          "ops"
+        ],
+        "layer": "runtime-fabric",
+        "domain": "operator-cockpit",
+        "publicSurface": {
+          "contracts": [
+            "FastAPI API"
+          ],
+          "apiFiles": [
+            "src/d365opps/api.py"
+          ],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.verification",
+            "node.pipeline"
+          ],
+          "observed": [
+            "node.web_app"
+          ],
+          "runtime": [
+            "node.pipeline",
+            "node.verification",
+            "node.web_app"
+          ],
+          "dataStores": [
+            "database",
+            "artifacts"
+          ],
+          "externalSystems": []
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps-api"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "uvicorn d365opps.api:app --reload"
+          ],
+          "observability": [
+            "obs.metrics.prometheus",
+            "obs.logs.structured"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "server-side pagination; read/write API surface"
+        },
+        "risk": {
+          "runtimeCriticality": "medium",
+          "dataSensitivity": "internal",
+          "blastRadius": "medium",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "modular",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "endpoint-fix",
+            "aggregation-fix",
+            "operator-action-fix"
+          ]
+        },
+        "verificationRefs": [
+          "verify.pytest"
+        ],
+        "policyRefs": [
+          "policy.oracle.admissibility"
+        ],
+        "skillRefs": [],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 12.0,
+          "factorScores": {
+            "codeSurfaceShare": 3,
+            "dependencyCentrality": 4,
+            "fanInFanOutPressure": 3,
+            "affectedRadius": 4,
+            "changeFrequency": 3,
+            "runtimeCriticality": 4,
+            "verificationSpan": 3,
+            "hiddenStateRisk": 2
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": false,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Serves operational truth to the web UI and emits Prometheus-style metrics."
+      },
+      {
+        "id": "node.web_app",
+        "templateOnly": false,
+        "kind": "nextjs-app",
+        "label": "Internal Web App",
+        "description": "Operator cockpit and analyst workbench for source health, opportunities, diagnostics, and exports.",
+        "parentId": null,
+        "childIds": [],
+        "paths": [
+          "apps/web/"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "web",
+          "ui"
+        ],
+        "layer": "runtime-fabric",
+        "domain": "operator-cockpit",
+        "publicSurface": {
+          "contracts": [
+            "Internal Web App"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [
+            "node.api"
+          ],
+          "observed": [
+            "node.verification"
+          ],
+          "runtime": [
+            "node.api",
+            "node.verification"
+          ],
+          "dataStores": [],
+          "externalSystems": [
+            "local browser for screenshot capture"
+          ]
+        },
+        "entrypoints": {
+          "execution": [
+            "npm run dev --prefix apps/web"
+          ],
+          "verification": [
+            "playwright screenshot capture via verification service"
+          ],
+          "debug": [
+            "npm --prefix apps/web run lint"
+          ],
+          "observability": [
+            "obs.artifacts.accountability"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "route-based surfaces; server-backed tables"
+        },
+        "risk": {
+          "runtimeCriticality": "medium",
+          "dataSensitivity": "internal",
+          "blastRadius": "medium",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "modular",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "ux-fix",
+            "table-drilldown",
+            "screenshot-fix"
+          ]
+        },
+        "verificationRefs": [
+          "verify.bundle"
+        ],
+        "policyRefs": [
+          "policy.oracle.admissibility"
+        ],
+        "skillRefs": [],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 12.0,
+          "factorScores": {
+            "codeSurfaceShare": 3,
+            "dependencyCentrality": 4,
+            "fanInFanOutPressure": 3,
+            "affectedRadius": 4,
+            "changeFrequency": 3,
+            "runtimeCriticality": 4,
+            "verificationSpan": 3,
+            "hiddenStateRisk": 2
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": false,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Produces canonical screenshots for admissible live-public bundles."
+      },
+      {
+        "id": "node.data-config",
+        "templateOnly": false,
+        "kind": "data-config",
+        "label": "Source and Retrieval Config",
+        "description": "Source pack and retrieval rules for official-public coverage.",
+        "parentId": null,
+        "childIds": [],
+        "paths": [
+          "src/d365opps/data/source_pack.json",
+          "src/d365opps/data/retrieval_rules.json"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "config",
+          "taxonomy"
+        ],
+        "layer": "repo-kernel",
+        "domain": "configuration",
+        "publicSurface": {
+          "contracts": [
+            "Source and Retrieval Config"
+          ],
+          "apiFiles": [],
+          "schemaFiles": [
+            "src/d365opps/data/source_pack.json",
+            "src/d365opps/data/retrieval_rules.json"
+          ]
+        },
+        "dependencies": {
+          "declared": [],
+          "observed": [
+            "node.sources",
+            "node.pipeline"
+          ],
+          "runtime": [
+            "node.pipeline",
+            "node.sources"
+          ],
+          "dataStores": [],
+          "externalSystems": []
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps seed-sources"
+          ],
+          "verification": [
+            "pytest -q"
+          ],
+          "debug": [
+            "python -m json.tool src/d365opps/data/source_pack.json"
+          ],
+          "observability": [
+            "obs.artifacts.verification"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": false,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": false,
+          "notes": "config-driven registry"
+        },
+        "risk": {
+          "runtimeCriticality": "medium",
+          "dataSensitivity": "internal",
+          "blastRadius": "medium",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "surgical",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "config-update",
+            "query-pack-tuning"
+          ]
+        },
+        "verificationRefs": [
+          "verify.pytest"
+        ],
+        "policyRefs": [
+          "policy.network.public-fetch"
+        ],
+        "skillRefs": [],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 8.0,
+          "factorScores": {
+            "codeSurfaceShare": 2,
+            "dependencyCentrality": 3,
+            "fanInFanOutPressure": 2,
+            "affectedRadius": 3,
+            "changeFrequency": 2,
+            "runtimeCriticality": 3,
+            "verificationSpan": 2,
+            "hiddenStateRisk": 1
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": false,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Configures source enablement, capabilities, and retrieval behavior."
+      },
+      {
+        "id": "node.docs",
+        "templateOnly": false,
+        "kind": "docs-surface",
+        "label": "Authority and Verification Docs",
+        "description": "Repo authority, verification, export, and Oracle instructions.",
+        "parentId": null,
+        "childIds": [],
+        "paths": [
+          "AGENTS.md",
+          "docs/",
+          "harness/"
+        ],
+        "ownedBy": [
+          "repository maintainers"
+        ],
+        "tags": [
+          "docs",
+          "authority"
+        ],
+        "layer": "repo-kernel",
+        "domain": "governance",
+        "publicSurface": {
+          "contracts": [
+            "Authority and Verification Docs"
+          ],
+          "apiFiles": [],
+          "schemaFiles": []
+        },
+        "dependencies": {
+          "declared": [],
+          "observed": [
+            "node.verification",
+            "node.oracle_bundle"
+          ],
+          "runtime": [
+            "node.oracle_bundle",
+            "node.verification"
+          ],
+          "dataStores": [],
+          "externalSystems": []
+        },
+        "entrypoints": {
+          "execution": [
+            "d365-opps refresh-oracle-instructions"
+          ],
+          "verification": [
+            "manual review + schema validation"
+          ],
+          "debug": [
+            "python -m json.tool harness/agent-native-repo-harness-map.json"
+          ],
+          "observability": [
+            "obs.artifacts.accountability"
+          ]
+        },
+        "boundednessSignals": {
+          "clearResponsibility": true,
+          "contractsExplicit": true,
+          "localizedTests": true,
+          "isolatedSideEffects": true,
+          "stablePublicSurface": true,
+          "minimalHiddenMutableState": true,
+          "notes": "small set of authority surfaces"
+        },
+        "risk": {
+          "runtimeCriticality": "medium",
+          "dataSensitivity": "internal",
+          "blastRadius": "medium",
+          "hiddenStateRisk": "medium"
+        },
+        "changeProfile": {
+          "changeFrequency": "surgical",
+          "reviewClass": "strict",
+          "likelyTaskKinds": [
+            "docs-refresh",
+            "policy-update",
+            "schema-fix"
+          ]
+        },
+        "verificationRefs": [
+          "verify.oracle.bundle"
+        ],
+        "policyRefs": [
+          "policy.export.boundary",
+          "policy.oracle.admissibility"
+        ],
+        "skillRefs": [
+          "skill.oracle"
+        ],
+        "agentRefs": [
+          "agent.codex.default"
+        ],
+        "operationalLoad": {
+          "percent": 8.0,
+          "factorScores": {
+            "codeSurfaceShare": 2,
+            "dependencyCentrality": 3,
+            "fanInFanOutPressure": 2,
+            "affectedRadius": 3,
+            "changeFrequency": 2,
+            "runtimeCriticality": 3,
+            "verificationSpan": 2,
+            "hiddenStateRisk": 1
+          }
+        },
+        "status": {
+          "lifeCycle": "active",
+          "hotspot": false,
+          "splitCandidate": false,
+          "exceptionalNode": false
+        },
+        "notes": "Canonical repo-local authority and harness surfaces."
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge.pipeline.sources",
+        "templateOnly": false,
+        "from": "node.pipeline",
+        "to": "node.sources",
+        "kind": "calls",
+        "sourceOfTruth": "code + import graph",
+        "notes": "Pipeline orchestrates source adapters."
+      },
+      {
+        "id": "edge.pipeline.verification",
+        "templateOnly": false,
+        "from": "node.pipeline",
+        "to": "node.verification",
+        "kind": "publishes-to",
+        "sourceOfTruth": "code + runtime behavior",
+        "notes": "Pipeline publishes verification/accountability artifacts at job end."
+      },
+      {
+        "id": "edge.verification.oracle",
+        "templateOnly": false,
+        "from": "node.verification",
+        "to": "node.oracle_bundle",
+        "kind": "feeds",
+        "sourceOfTruth": "artifact contract",
+        "notes": "Oracle bundle builder packages verification/accountability outputs."
+      },
+      {
+        "id": "edge.api.verification",
+        "templateOnly": false,
+        "from": "node.api",
+        "to": "node.verification",
+        "kind": "reads",
+        "sourceOfTruth": "code + API responses",
+        "notes": "API serves verification-derived truth surfaces."
+      },
+      {
+        "id": "edge.web.api",
+        "templateOnly": false,
+        "from": "node.web_app",
+        "to": "node.api",
+        "kind": "http",
+        "sourceOfTruth": "runtime integration",
+        "notes": "Web app consumes the API for operational truth."
+      },
+      {
+        "id": "edge.sources.config",
+        "templateOnly": false,
+        "from": "node.sources",
+        "to": "node.data-config",
+        "kind": "configured-by",
+        "sourceOfTruth": "source pack + retrieval rules",
+        "notes": "Adapters are configured by source pack and retrieval rules."
+      }
+    ]
+  },
+  "maturity": {
+    "criteria": [
+      {
+        "id": "A1",
+        "name": "coldStartBootability",
+        "score": 4,
+        "hardFailMode": "universal",
+        "evidenceRefs": [
+          "sor.architecture",
+          "verify.pytest"
+        ],
+        "notes": "Repo boots locally with Python tooling, seeded data, and web stack instructions."
+      },
+      {
+        "id": "A2",
+        "name": "authoritativePrecedenceModel",
+        "score": 4,
+        "hardFailMode": "universal",
+        "evidenceRefs": [
+          "instructions.repo.root",
+          "instructions.repo.oracle",
+          "sor.oracle"
+        ],
+        "notes": "Authority layers are explicit and repo-local."
+      },
+      {
+        "id": "A3",
+        "name": "repoLocalSystemOfRecord",
+        "score": 4,
+        "hardFailMode": "universal",
+        "evidenceRefs": [
+          "sor.architecture",
+          "sor.verification",
+          "sor.harness-map"
+        ],
+        "notes": "System-of-record surfaces exist in the repo and are used by verification/oracle tooling."
+      },
+      {
+        "id": "A4",
+        "name": "durableHandoffAndSessionContinuity",
+        "score": 4,
+        "hardFailMode": "universal",
+        "evidenceRefs": [
+          "sor.handoff",
+          "store.verification-artifacts"
+        ],
+        "notes": "Handoff plus artifact histories support continuity."
+      },
+      {
+        "id": "A17",
+        "name": "externalAndExportSafeSurfaces",
+        "score": 4,
+        "hardFailMode": "if-exporting-artifacts",
+        "evidenceRefs": [
+          "export.gitattributes",
+          "policy.export.boundary",
+          "verify.oracle.bundle"
+        ],
+        "notes": "Canonical Oracle bundle boundaries are documented and enforced."
+      }
+    ],
+    "nextHardeningQueue": [
+      {
+        "id": "hardening.sources.expand-prod-ready",
+        "templateOnly": false,
+        "criterionId": "A3",
+        "priority": "P0",
+        "boundedTask": "Increase production-ready public no-auth adapters and official regression pass coverage beyond the current baseline.",
+        "targetSurfaceIds": [
+          "node.sources",
+          "node.data-config"
+        ],
+        "notes": "The main remaining product gap is live seller-ready yield from more official sources."
+      },
+      {
+        "id": "hardening.web.screenshots",
+        "templateOnly": false,
+        "criterionId": "A17",
+        "priority": "P1",
+        "boundedTask": "Keep screenshot capture stable so canonical live-public bundles never regress to placeholders.",
+        "targetSurfaceIds": [
+          "node.web_app",
+          "node.verification"
+        ],
+        "notes": "Real screenshot capture is now an admissibility gate."
+      }
+    ],
+    "notes": "The repo is past prototype stage but still hardening toward a scaled official-public lead engine."
+  },
+  "integrity": {
+    "lastHumanReviewAt": "2026-04-15T00:00:00Z",
+    "lastAgentReviewAt": "2026-04-15T08:08:50Z",
+    "lastGeneratedAt": "2026-04-15T08:08:50Z",
+    "coverageEstimatePercent": 90.0,
+    "unmappedCriticalPaths": [],
+    "orphanedPaths": [],
+    "dependencyDriftScore": 1.0,
+    "instructionConflictScore": 0.0,
+    "exportLeakageRiskScore": 1.0,
+    "notes": "Integrity is strongest around canonical truth publication, Oracle packaging, and repo-local authority surfaces; source adapter breadth remains the primary remaining gap."
+  }
+}

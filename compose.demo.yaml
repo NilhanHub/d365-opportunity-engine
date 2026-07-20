@@ -1,0 +1,5 @@
+services:
+  api:
+    environment:
+      D365_OPPS_DEMO_MODE: "true"
+      D365_OPPS_DATABASE_URL: sqlite:///./var/d365opps-demo.db

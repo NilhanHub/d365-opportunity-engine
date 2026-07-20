@@ -1,0 +1,4 @@
+services:
+  api:
+    environment:
+      D365_OPPS_DEMO_MODE: "false"

@@ -1,0 +1,9 @@
+.git
+.pytest_cache
+.venv
+__pycache__
+node_modules
+apps/web/node_modules
+apps/web/.next
+var
+artifacts

@@ -1,0 +1,84 @@
+{
+  "defaults": {
+    "timeout_seconds": 4,
+    "max_bytes": 98304,
+    "respect_robots": true,
+    "follow_redirects": true
+  },
+  "strategies": {
+    "api_query": {
+      "timeout_seconds": 6,
+      "read_bytes": 98304,
+      "accept": ["application/json", "application/ld+json", "text/json"]
+    },
+    "ocds_download": {
+      "timeout_seconds": 6,
+      "read_bytes": 98304,
+      "accept": ["application/json", "application/zip", "text/html"]
+    },
+    "dataset_download": {
+      "timeout_seconds": 6,
+      "read_bytes": 98304,
+      "accept": ["application/json", "application/xml", "text/csv", "text/html"]
+    },
+    "rss_atom": {
+      "timeout_seconds": 4,
+      "read_bytes": 65536,
+      "accept": ["application/rss+xml", "application/atom+xml", "application/xml", "text/xml"]
+    },
+    "sitemap_probe": {
+      "timeout_seconds": 4,
+      "read_bytes": 65536,
+      "accept": ["application/xml", "text/xml", "text/html"]
+    },
+    "html_search": {
+      "timeout_seconds": 4,
+      "read_bytes": 98304,
+      "accept": ["text/html"]
+    },
+    "html_browse": {
+      "timeout_seconds": 4,
+      "read_bytes": 98304,
+      "accept": ["text/html"]
+    },
+    "detail_follow": {
+      "timeout_seconds": 5,
+      "read_bytes": 98304,
+      "accept": ["text/html", "application/pdf"]
+    },
+    "platform_fingerprint_probe": {
+      "timeout_seconds": 4,
+      "read_bytes": 98304,
+      "accept": ["text/html"]
+    },
+    "buyer_direct_probe": {
+      "timeout_seconds": 4,
+      "read_bytes": 98304,
+      "accept": ["text/html"]
+    },
+    "job_posting_probe": {
+      "timeout_seconds": 4,
+      "read_bytes": 98304,
+      "accept": ["text/html", "application/ld+json"]
+    },
+    "document_probe": {
+      "timeout_seconds": 5,
+      "read_bytes": 98304,
+      "accept": ["application/pdf", "text/html", "application/msword"]
+    }
+  },
+  "free_onboarding": {
+    "sam_gov": {
+      "setup_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+      "account_type": "free_api_key"
+    },
+    "ungm_public_notices": {
+      "setup_url": "https://www.ungm.org/Public/Registration",
+      "account_type": "free_account"
+    },
+    "search_api": {
+      "setup_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+      "account_type": "free_or_operator_supplied_api_key"
+    }
+  }
+}

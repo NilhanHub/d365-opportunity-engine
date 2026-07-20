@@ -1,0 +1,1616 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-native-repo-harness-map:schema:4.0.0",
+  "title": "Agent-Native Repo Harness Map",
+  "description": "Schema for a layered repo-centered harness map aligned to the Agent-Native Repo Harness Standard dated 2026-04-14.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "manifestKind",
+    "manifestVersion",
+    "standard",
+    "repo",
+    "generation",
+    "authority",
+    "repoKernel",
+    "runtimeFabric",
+    "specialization",
+    "governancePlane",
+    "codeGraph",
+    "maturity",
+    "integrity"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "manifestKind": {
+      "const": "agent-native-repo-harness-map"
+    },
+    "manifestVersion": {
+      "type": "string"
+    },
+    "template": {
+      "type": "boolean"
+    },
+    "standard": {
+      "$ref": "#/$defs/standard"
+    },
+    "repo": {
+      "$ref": "#/$defs/repo"
+    },
+    "generation": {
+      "$ref": "#/$defs/generation"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    },
+    "repoKernel": {
+      "$ref": "#/$defs/repoKernel"
+    },
+    "runtimeFabric": {
+      "$ref": "#/$defs/runtimeFabric"
+    },
+    "specialization": {
+      "$ref": "#/$defs/specialization"
+    },
+    "governancePlane": {
+      "$ref": "#/$defs/governancePlane"
+    },
+    "codeGraph": {
+      "$ref": "#/$defs/codeGraph"
+    },
+    "maturity": {
+      "$ref": "#/$defs/maturity"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "idArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "location": {
+      "type": "string"
+    },
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "standard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "date",
+        "sourcePath",
+        "legacyLineage"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "legacyLineage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "replaces",
+            "note"
+          ],
+          "properties": {
+            "replaces": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "note": {
+              "$ref": "#/$defs/notes"
+            }
+          }
+        }
+      }
+    },
+    "repo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repoId",
+        "displayName",
+        "repoCondition",
+        "repoType",
+        "defaultBranch",
+        "languages",
+        "platforms",
+        "notes"
+      ],
+      "properties": {
+        "repoId": {
+          "$ref": "#/$defs/id"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "repoCondition": {
+          "type": "string"
+        },
+        "repoType": {
+          "type": "string"
+        },
+        "defaultBranch": {
+          "type": "string"
+        },
+        "languages": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "platforms": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "frozenToDate",
+        "lastGeneratedAt",
+        "generatedBy",
+        "manualOwners",
+        "notes"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "frozenToDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "lastGeneratedAt": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "manualOwners": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "precedenceLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "location",
+        "appliesTo",
+        "precedence",
+        "mergeBehavior",
+        "authoritative",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "appliesTo": {
+          "type": "string"
+        },
+        "precedence": {
+          "type": "integer"
+        },
+        "mergeBehavior": {
+          "type": "string"
+        },
+        "authoritative": {
+          "type": "boolean"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precedenceModel"
+      ],
+      "properties": {
+        "precedenceModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "layers",
+            "defaultColdStartSequence",
+            "conflictPolicy",
+            "notes"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "layers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/precedenceLayer"
+              }
+            },
+            "defaultColdStartSequence": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "conflictPolicy": {
+              "type": "string"
+            },
+            "notes": {
+              "$ref": "#/$defs/notes"
+            }
+          }
+        }
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "location",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "freshnessSlaDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "writePolicy": {
+          "type": "string"
+        },
+        "bounded": {
+          "type": "boolean"
+        },
+        "requiredBeforeExit": {
+          "type": "boolean"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "appendOnly": {
+          "type": "boolean"
+        }
+      }
+    },
+    "repoKernel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "systemOfRecordSurfaces",
+        "taskSources",
+        "handoffArtifacts",
+        "exportBoundaries"
+      ],
+      "properties": {
+        "systemOfRecordSurfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surface"
+          }
+        },
+        "taskSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surface"
+          }
+        },
+        "handoffArtifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surface"
+          }
+        },
+        "exportBoundaries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/surface"
+          }
+        }
+      }
+    },
+    "durableStore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "location",
+        "appendOnly"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "appendOnly": {
+          "type": "boolean"
+        }
+      }
+    },
+    "executionEnvironment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "setupEntrypoints",
+        "cleanupEntrypoints",
+        "networkPolicyId",
+        "secretPolicyId",
+        "writeScope",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "setupEntrypoints": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "cleanupEntrypoints": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "networkPolicyId": {
+          "$ref": "#/$defs/id"
+        },
+        "secretPolicyId": {
+          "$ref": "#/$defs/id"
+        },
+        "writeScope": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "workContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "location",
+        "persistent",
+        "isolatedFrom",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "persistent": {
+          "type": "boolean"
+        },
+        "isolatedFrom": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "toolBus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "configLocation",
+        "scope",
+        "trustClass",
+        "supports",
+        "approvalBehavior",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "configLocation": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "trustClass": {
+          "type": "string"
+        },
+        "supports": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "approvalBehavior": {
+          "type": "string"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "runtimeFabric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sessionContinuity",
+        "executionEnvironments",
+        "workContexts",
+        "toolBuses"
+      ],
+      "properties": {
+        "sessionContinuity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "durableStores",
+            "checkpointStrategy",
+            "compactionStrategy",
+            "resumeEntrypoints",
+            "notes"
+          ],
+          "properties": {
+            "mode": {
+              "type": "string"
+            },
+            "durableStores": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/durableStore"
+              }
+            },
+            "checkpointStrategy": {
+              "type": "string"
+            },
+            "compactionStrategy": {
+              "type": "string"
+            },
+            "resumeEntrypoints": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "notes": {
+              "$ref": "#/$defs/notes"
+            }
+          }
+        },
+        "executionEnvironments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/executionEnvironment"
+          }
+        },
+        "workContexts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workContext"
+          }
+        },
+        "toolBuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/toolBus"
+          }
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "location",
+        "scope",
+        "invocation",
+        "relatedNodeIds",
+        "verificationRefs",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "invocation": {
+          "type": "string"
+        },
+        "relatedNodeIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "verificationRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "definitionLocation",
+        "toolScopes",
+        "permissionPolicyIds",
+        "relatedNodeIds",
+        "handoffTargets",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "definitionLocation": {
+          "type": "string"
+        },
+        "toolScopes": {
+          "$ref": "#/$defs/idArray"
+        },
+        "permissionPolicyIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "relatedNodeIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "handoffTargets": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "specialization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skills",
+        "agents"
+      ],
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/skill"
+          }
+        },
+        "agents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/agent"
+          }
+        }
+      }
+    },
+    "verificationSurface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "command",
+        "workingDirectory",
+        "appliesToNodeIds",
+        "deterministic",
+        "requiredForMerge",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "workingDirectory": {
+          "type": "string"
+        },
+        "appliesToNodeIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "deterministic": {
+          "type": "boolean"
+        },
+        "requiredForMerge": {
+          "type": "boolean"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "observabilitySurface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "accessMethod",
+        "dataSensitivity",
+        "appliesToNodeIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "accessMethod": {
+          "type": "string"
+        },
+        "dataSensitivity": {
+          "type": "string"
+        },
+        "appliesToNodeIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "reviewLoop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "trigger",
+        "canBlock",
+        "verifierIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "trigger": {
+          "type": "string"
+        },
+        "canBlock": {
+          "type": "boolean"
+        },
+        "verifierIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "hook": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "event",
+        "handlerType",
+        "sourceLocation",
+        "blockOnFailure",
+        "appliesTo",
+        "purpose",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "event": {
+          "type": "string"
+        },
+        "handlerType": {
+          "type": "string"
+        },
+        "sourceLocation": {
+          "type": "string"
+        },
+        "blockOnFailure": {
+          "type": "boolean"
+        },
+        "appliesTo": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "value"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "trigger",
+        "environmentId",
+        "workContextId",
+        "boundedTaskContract",
+        "verificationRefs",
+        "escalationPolicyId",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "trigger": {
+          "$ref": "#/$defs/trigger"
+        },
+        "environmentId": {
+          "$ref": "#/$defs/id"
+        },
+        "workContextId": {
+          "$ref": "#/$defs/id"
+        },
+        "boundedTaskContract": {
+          "type": "string"
+        },
+        "verificationRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "escalationPolicyId": {
+          "$ref": "#/$defs/id"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "enforcement",
+        "sourceLocation",
+        "appliesTo",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "enforcement": {
+          "type": "string"
+        },
+        "sourceLocation": {
+          "type": "string"
+        },
+        "appliesTo": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string"
+            ]
+          }
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "governancePlane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verificationSurfaces",
+        "observabilitySurfaces",
+        "reviewLoops",
+        "hooks",
+        "automations",
+        "policies"
+      ],
+      "properties": {
+        "verificationSurfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/verificationSurface"
+          }
+        },
+        "observabilitySurfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/observabilitySurface"
+          }
+        },
+        "reviewLoops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLoop"
+          }
+        },
+        "hooks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hook"
+          }
+        },
+        "automations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/automation"
+          }
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/policy"
+          }
+        }
+      }
+    },
+    "publicSurface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contracts",
+        "apiFiles",
+        "schemaFiles"
+      ],
+      "properties": {
+        "contracts": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "apiFiles": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "schemaFiles": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declared",
+        "observed",
+        "runtime",
+        "dataStores",
+        "externalSystems"
+      ],
+      "properties": {
+        "declared": {
+          "$ref": "#/$defs/idArray"
+        },
+        "observed": {
+          "$ref": "#/$defs/idArray"
+        },
+        "runtime": {
+          "$ref": "#/$defs/idArray"
+        },
+        "dataStores": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "externalSystems": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "entrypoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution",
+        "verification",
+        "debug",
+        "observability"
+      ],
+      "properties": {
+        "execution": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "verification": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "debug": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "observability": {
+          "$ref": "#/$defs/idArray"
+        }
+      }
+    },
+    "boundednessSignals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clearResponsibility",
+        "contractsExplicit",
+        "localizedTests",
+        "isolatedSideEffects",
+        "stablePublicSurface",
+        "minimalHiddenMutableState",
+        "notes"
+      ],
+      "properties": {
+        "clearResponsibility": {
+          "type": "boolean"
+        },
+        "contractsExplicit": {
+          "type": "boolean"
+        },
+        "localizedTests": {
+          "type": "boolean"
+        },
+        "isolatedSideEffects": {
+          "type": "boolean"
+        },
+        "stablePublicSurface": {
+          "type": "boolean"
+        },
+        "minimalHiddenMutableState": {
+          "type": "boolean"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtimeCriticality",
+        "dataSensitivity",
+        "blastRadius",
+        "hiddenStateRisk"
+      ],
+      "properties": {
+        "runtimeCriticality": {
+          "type": "string"
+        },
+        "dataSensitivity": {
+          "type": "string"
+        },
+        "blastRadius": {
+          "type": "string"
+        },
+        "hiddenStateRisk": {
+          "type": "string"
+        }
+      }
+    },
+    "changeProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "changeFrequency",
+        "reviewClass",
+        "likelyTaskKinds"
+      ],
+      "properties": {
+        "changeFrequency": {
+          "type": "string"
+        },
+        "reviewClass": {
+          "type": "string"
+        },
+        "likelyTaskKinds": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "operationalLoad": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "percent",
+        "factorScores"
+      ],
+      "properties": {
+        "percent": {
+          "type": "number",
+          "minimum": 0
+        },
+        "factorScores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lifeCycle",
+        "hotspot",
+        "splitCandidate",
+        "exceptionalNode"
+      ],
+      "properties": {
+        "lifeCycle": {
+          "type": "string"
+        },
+        "hotspot": {
+          "type": "boolean"
+        },
+        "splitCandidate": {
+          "type": "boolean"
+        },
+        "exceptionalNode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "description",
+        "parentId",
+        "childIds",
+        "paths",
+        "ownedBy",
+        "tags",
+        "layer",
+        "domain",
+        "publicSurface",
+        "dependencies",
+        "entrypoints",
+        "boundednessSignals",
+        "risk",
+        "changeProfile",
+        "verificationRefs",
+        "policyRefs",
+        "skillRefs",
+        "agentRefs",
+        "operationalLoad",
+        "status",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "childIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "paths": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "ownedBy": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "tags": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "layer": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "publicSurface": {
+          "$ref": "#/$defs/publicSurface"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/dependencies"
+        },
+        "entrypoints": {
+          "$ref": "#/$defs/entrypoints"
+        },
+        "boundednessSignals": {
+          "$ref": "#/$defs/boundednessSignals"
+        },
+        "risk": {
+          "$ref": "#/$defs/risk"
+        },
+        "changeProfile": {
+          "$ref": "#/$defs/changeProfile"
+        },
+        "verificationRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "policyRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "skillRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "agentRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "operationalLoad": {
+          "$ref": "#/$defs/operationalLoad"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "from",
+        "to",
+        "kind",
+        "sourceOfTruth",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "from": {
+          "$ref": "#/$defs/id"
+        },
+        "to": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "sourceOfTruth": {
+          "type": "string"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "codeGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generation",
+        "operationalLoadModel",
+        "nodes",
+        "edges"
+      ],
+      "properties": {
+        "generation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "preferredGenerators",
+            "lastGeneratedAt",
+            "coverageEstimatePercent",
+            "notes"
+          ],
+          "properties": {
+            "mode": {
+              "type": "string"
+            },
+            "preferredGenerators": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "lastGeneratedAt": {
+              "type": "string"
+            },
+            "coverageEstimatePercent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "notes": {
+              "$ref": "#/$defs/notes"
+            }
+          }
+        },
+        "operationalLoadModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "advisoryOnly",
+            "factors",
+            "policy",
+            "notes"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "advisoryOnly": {
+              "type": "boolean"
+            },
+            "factors": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "policy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "targetMaxLoadPercent",
+                "reviewTriggerPercent",
+                "mandatoryDispersionReviewPercent",
+                "allowExceptionalNodes"
+              ],
+              "properties": {
+                "targetMaxLoadPercent": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "reviewTriggerPercent": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "mandatoryDispersionReviewPercent": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "allowExceptionalNodes": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "notes": {
+              "$ref": "#/$defs/notes"
+            }
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          }
+        }
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "score",
+        "hardFailMode",
+        "evidenceRefs",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "score": {
+          "$ref": "#/$defs/score"
+        },
+        "hardFailMode": {
+          "type": "string"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "hardeningTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "criterionId",
+        "priority",
+        "boundedTask",
+        "targetSurfaceIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "templateOnly": {
+          "type": "boolean"
+        },
+        "criterionId": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string"
+        },
+        "boundedTask": {
+          "type": "string"
+        },
+        "targetSurfaceIds": {
+          "$ref": "#/$defs/idArray"
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "maturity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criteria",
+        "nextHardeningQueue",
+        "notes"
+      ],
+      "properties": {
+        "criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/criterion"
+          }
+        },
+        "nextHardeningQueue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hardeningTask"
+          }
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lastHumanReviewAt",
+        "lastAgentReviewAt",
+        "lastGeneratedAt",
+        "coverageEstimatePercent",
+        "unmappedCriticalPaths",
+        "orphanedPaths",
+        "dependencyDriftScore",
+        "instructionConflictScore",
+        "exportLeakageRiskScore",
+        "notes"
+      ],
+      "properties": {
+        "lastHumanReviewAt": {
+          "type": "string"
+        },
+        "lastAgentReviewAt": {
+          "type": "string"
+        },
+        "lastGeneratedAt": {
+          "type": "string"
+        },
+        "coverageEstimatePercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "unmappedCriticalPaths": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "orphanedPaths": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "dependencyDriftScore": {
+          "type": "number",
+          "minimum": 0
+        },
+        "instructionConflictScore": {
+          "type": "number",
+          "minimum": 0
+        },
+        "exportLeakageRiskScore": {
+          "type": "number",
+          "minimum": 0
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        }
+      }
+    }
+  }
+}

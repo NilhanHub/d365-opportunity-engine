@@ -1,0 +1,44 @@
+{
+  "ocds_registry_publisher": {
+    "family_group": "A",
+    "label": "OCDS registry / compiled procurement data",
+    "default_strategy": "ocds_download",
+    "lawful_priority": ["ocds_download", "dataset_download", "api_query", "html_browse"],
+    "production_ready_candidate": true
+  },
+  "supranational_procurement": {
+    "family_group": "B",
+    "label": "Supranational / multilateral / IFI procurement",
+    "default_strategy": "api_query",
+    "lawful_priority": ["api_query", "html_search", "html_browse", "detail_follow"],
+    "production_ready_candidate": true
+  },
+  "official_national_portal": {
+    "family_group": "C",
+    "label": "Official national / regional procurement portals",
+    "default_strategy": "html_browse",
+    "lawful_priority": ["api_query", "dataset_download", "rss_atom", "html_search", "html_browse", "detail_follow"],
+    "production_ready_candidate": true
+  },
+  "hosted_procurement_instance": {
+    "family_group": "D",
+    "label": "Hosted procurement portal instances",
+    "default_strategy": "platform_fingerprint_probe",
+    "lawful_priority": ["platform_fingerprint_probe", "html_browse", "detail_follow"],
+    "production_ready_candidate": false
+  },
+  "buyer_direct_procurement": {
+    "family_group": "E",
+    "label": "Buyer-direct procurement / supplier / sourcing pages",
+    "default_strategy": "buyer_direct_probe",
+    "lawful_priority": ["buyer_direct_probe", "sitemap_probe", "html_browse", "detail_follow"],
+    "production_ready_candidate": false
+  },
+  "install_base_trigger": {
+    "family_group": "F",
+    "label": "Install-base / trigger / outreach surfaces",
+    "default_strategy": "job_posting_probe",
+    "lawful_priority": ["job_posting_probe", "document_probe", "buyer_direct_probe", "html_browse"],
+    "production_ready_candidate": false
+  }
+}

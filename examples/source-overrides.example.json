@@ -1,0 +1,43 @@
+{
+  "generic_rss": {
+    "enabled": true,
+    "endpoint": "https://www.ealing.gov.uk/rss/201018/documents",
+    "country": "GB",
+    "region": "UK",
+    "config_json": {
+      "query_profile": "generic_rss"
+    }
+  },
+  "sitemap_portal": {
+    "enabled": true,
+    "endpoint": "https://www.ealing.gov.uk/sitemap.xml",
+    "country": "GB",
+    "region": "UK",
+    "config_json": {
+      "query_profile": "sitemap_portal"
+    }
+  },
+  "search_api": {
+    "enabled": false,
+    "endpoint": "https://api.search.brave.com/res/v1/web/search",
+    "config_json": {
+      "api_key_header": "X-Subscription-Token",
+      "api_key": "replace-me",
+      "query_profile": "search_api"
+    }
+  },
+  "generic_web": {
+    "enabled": true,
+    "endpoint": "https://www.ealing.gov.uk/downloads/201018/tenders_and_contracts",
+    "config_json": {
+      "targets": [
+        {
+          "url": "https://www.ealing.gov.uk/downloads/201018/tenders_and_contracts",
+          "label": "Ealing procurement pipeline",
+          "country": "GB",
+          "procurement_type": "Procurement pipeline"
+        }
+      ]
+    }
+  }
+}

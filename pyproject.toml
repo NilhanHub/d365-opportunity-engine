@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "d365-opportunity-engine"
+version = "0.1.0"
+description = "Public opportunity discovery engine for Microsoft Dynamics 365 services firms."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "fastapi>=0.115.0",
+  "httpx>=0.27.0",
+  "jsonschema>=4.23.0",
+  "opentelemetry-api>=1.28.0",
+  "prefect>=2.19,<4",
+  "psycopg[binary]>=3.2.1",
+  "pydantic>=2.9.2",
+  "pydantic-settings>=2.4.0",
+  "pypdf>=5.1.0",
+  "python-dateutil>=2.9.0.post0",
+  "SQLAlchemy>=2.0.36",
+  "typer>=0.12.5",
+  "uvicorn>=0.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+]
+
+[project.scripts]
+d365-opps = "d365opps.cli:app"
+d365-opps-api = "d365opps.api:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+"d365opps.data" = ["*.json", "*.jsonl"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+  "ignore::DeprecationWarning:pypdf.*",
+]
